@@ -1,6 +1,10 @@
 package com.capgemini.walletapplication.bean;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class WalletApplicationDetails {
 
@@ -8,15 +12,15 @@ public class WalletApplicationDetails {
 	private String lastName;
 	private String gender;
 	private long accNo;
+	private int age;
+	private String mobileNo;
 	
-
 	@Override
 	public String toString() {
 		return "WalletApplicationDetails [firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender
-				+ ", accNo=" + accNo + ", mobileNo=" + mobileNo + ", date=" + date + ", email=" + email + ", username="
-				+ username + ", password=" + password + ", amount=" + amount + "]";
+				+ ", accNo=" + accNo + ", age=" + age + ", mobileNo=" + mobileNo + ", date=" + date + ", email=" + email
+				+ ", username=" + username + ", password=" + password + ", balance=" + balance + "]";
 	}
-	
 	
 	public String getFirstName() {
 		return firstName;
@@ -72,17 +76,55 @@ public class WalletApplicationDetails {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public double getAmount() {
-		return amount;
+	
+	public int getAge() {
+		return age;
 	}
-	public void setAmount(double amount) {
-		this.amount = amount;
+
+
+	public void setAge(int age) {
+		this.age = age;
 	}
-	private String mobileNo;
+	public double getBalance() {
+		return balance;
+	}
+
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+	/*public long getTransId() {
+		return transId;
+	}
+
+	public void setTransId(long transId) {
+		this.transId = transId;
+		
+	}*/
+	
+	public List<Long> getTrans() {
+		return trans;
+	}
+	public void setTrans(List<Long> trans) {
+		
+		this.trans = trans;
+		
+	}
+
+	/*public Map<Long,String> getTrans() {
+		return trans;
+	}
+
+	public void setTrans(Map<Long,String> trans) {
+		this.trans = trans;
+	}*/
+
 	LocalDate date;
 	private String email;
 	private String username;
 	private String password;
-	private double amount;
+	private double balance;
+	//private long transId;
+	private List<Long> trans=new ArrayList<Long>();
 	
 }

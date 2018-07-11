@@ -1,50 +1,50 @@
 package com.capgemini.walletapplication.service;
 
+import java.util.Map;
+
 import com.capgemini.walletapplication.bean.WalletApplicationDetails;
+import com.capgemini.walletapplication.dao.WalletApplicationDAO;
 
 public class WalletApplicationService implements WalletApplicationServiceInterface {
 
+	WalletApplicationDAO dao=new WalletApplicationDAO();
+	
 	public int createAccount(WalletApplicationDetails details) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.createAccount(details) ;
+		
 	}
-
-	
 
 	public int deposit(double amount) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.deposit(amount);
 	}
 
 	public int withdraw(double amount) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.withdraw(amount);
 	}
 
 	public int fundTransfer(long toAccNo,double amount) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.fundTransfer(toAccNo, amount);
 	}
 
 	public boolean login(WalletApplicationDetails details) {
 		// TODO Auto-generated method stub
-		return false;
+		return dao.login(details);
+		
 	}
-
-
 
 	public double showBalance() {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.showBalance();
 	}
 
-
-
-	/*public WalletApplicationDetails printTransaction(long tid) {
+	public Map printTransaction() {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.printTransaction();
 	}
 
-	*/
 	
 }

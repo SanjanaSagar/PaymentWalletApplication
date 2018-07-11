@@ -80,9 +80,9 @@ public class WalletApplicationDetailsTest extends TestCase {
 
 	public void testGetAmount() {
 		
-		details.setAmount(9000);
-		assertFalse(8000==details.getAmount());
-		assertTrue(9000==details.getAmount());
+		details.setBalance(9000);
+		assertFalse(8000==details.getBalance());
+		assertTrue(9000==details.getBalance());
 	}
 
 }
