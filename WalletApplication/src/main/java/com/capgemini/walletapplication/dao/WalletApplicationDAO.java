@@ -9,7 +9,7 @@ import java.util.Map;
 import com.capgemini.walletapplication.bean.WalletApplicationDetails;
 
 public class WalletApplicationDAO implements WalletApplicationDAOInterface{
-	static long transId;
+	 long transId;
 	static WalletApplicationDetails temp=new WalletApplicationDetails();
 	static List<WalletApplicationDetails> list=new ArrayList<WalletApplicationDetails>();
 	static Map<Long,String> transactions=new HashMap<Long,String>();
@@ -46,7 +46,7 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 		while(it.hasNext()) {
 			
 			WalletApplicationDetails itDetails=it.next();
-			if(temp.getUsername()==itDetails.getUsername()) {
+			if(temp.getUsername().equals(itDetails.getUsername())) {
 				
 				double balance=itDetails.getBalance();
 				return balance;
@@ -65,14 +65,14 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 			
 			WalletApplicationDetails itDetails=it.next();
 			
-			if(temp.getUsername()==itDetails.getUsername()) {
+			if(temp.getUsername().equals(itDetails.getUsername())) {
 				
 				itDetails.setBalance(itDetails.getBalance()+amount);
 				//set transaction 
-				itDetails.setTrans(trans);
-				transId=(long)Math.random()*12345+999;
+				transId=(long)Math.random()*12345+678;
 				trans.add(transId);
-				String s="deposited "+Double.toString(amount)+"to "+Long.toString(itDetails.getAccNo());
+				itDetails.setTrans(trans);
+				String s="\tDeposited "+Double.toString(amount)+" to "+Long.toString(itDetails.getAccNo());
 				transactions.put(transId, s);
 				return 1;
 			}
@@ -89,14 +89,14 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 		while(it.hasNext()) {
 			
 			WalletApplicationDetails itDetails=it.next();
-			if(temp.getUsername()==itDetails.getUsername()) {
+			if(temp.getUsername().equals(itDetails.getUsername())) {
 				
 				itDetails.setBalance(itDetails.getBalance()-amount);
 				//set transaction
-				itDetails.setTrans(trans);
-				transId=(long)Math.random()*12345+999;
+				transId=(long)Math.random()*10000+999;
 				trans.add(transId);
-				String s="withdrew "+Double.toString(amount)+"from "+Long.toString(itDetails.getAccNo());
+				itDetails.setTrans(trans);
+				String s="\tWithdrew "+Double.toString(amount)+" from "+Long.toString(itDetails.getAccNo());
 				transactions.put(transId, s);
 				return 1;
 			}
@@ -114,7 +114,7 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 		while(it.hasNext()) {
 			
 			WalletApplicationDetails itDetails=it.next();
-			if(temp.getUsername()==itDetails.getUsername()) {
+			if(temp.getUsername().equals(itDetails.getUsername())) {
 				// debit from user account
 				itDetails.setBalance(itDetails.getBalance()-amount);
 				//credit to recipient if xyz bank account holder
@@ -123,17 +123,16 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 					WalletApplicationDetails itDetails1=it1.next();
 					if(itDetails1.getAccNo()==toAccNo) {
 						
-						itDetails1.setBalance(itDetails1.getBalance()+amount);
-						//set transaction
-						itDetails.setTrans(trans);
-						 transId=(long)Math.random()*12345+999;
-							trans.add(transId);
-						String s="transfered "+Double.toString(amount)+"to "+Long.toString(toAccNo)+"from "+Long.toString(itDetails.getAccNo());
-						transactions.put(transId, s);
-						
+						itDetails1.setBalance(itDetails1.getBalance()+amount);	
 						
 					}
+					
 				}
+				transId=(long)Math.random()*12345 + 234;
+				trans.add(transId);
+				itDetails.setTrans(trans);
+				String s="\tTransfered "+Double.toString(amount)+" to "+Long.toString(toAccNo)+" from "+Long.toString(itDetails.getAccNo());
+				transactions.put(transId, s);
 				return 1;		
 			}	
 		}
