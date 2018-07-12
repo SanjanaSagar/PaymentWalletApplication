@@ -4,9 +4,9 @@ import java.time.LocalDate;
 
 import junit.framework.TestCase;
 
-public class WalletApplicationDetailsTest extends TestCase {
+public class AccountDetailsTest extends TestCase {
 
-	WalletApplicationDetails details =new WalletApplicationDetails();
+	AccountDetails details =new AccountDetails();
 	
 	
 	public void testGetFirstName() {

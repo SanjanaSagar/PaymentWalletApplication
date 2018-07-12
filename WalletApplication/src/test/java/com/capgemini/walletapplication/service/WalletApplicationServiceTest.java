@@ -1,12 +1,12 @@
 package com.capgemini.walletapplication.service;
 
-import com.capgemini.walletapplication.bean.WalletApplicationDetails;
+import com.capgemini.walletapplication.bean.AccountDetails;
 
 import junit.framework.TestCase;
 
 public class WalletApplicationServiceTest extends TestCase {
 
-	WalletApplicationDetails details;
+	AccountDetails details;
 	
 	WalletApplicationService service=new WalletApplicationService();
 	

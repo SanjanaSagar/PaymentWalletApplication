@@ -2,13 +2,13 @@ package com.capgemini.walletapplication.dao;
 
 import java.util.Map;
 
-import com.capgemini.walletapplication.bean.WalletApplicationDetails;
+import com.capgemini.walletapplication.bean.AccountDetails;
 
 public interface WalletApplicationDAOInterface {
 
-	public int createAccount(WalletApplicationDetails details);
+	public int createAccount(AccountDetails details);
 	
-	public boolean login(WalletApplicationDetails details);
+	public boolean login(AccountDetails details);
 	
 	public double showBalance();
 	

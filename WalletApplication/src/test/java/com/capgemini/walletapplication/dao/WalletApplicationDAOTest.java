@@ -1,13 +1,13 @@
 package com.capgemini.walletapplication.dao;
 
-import com.capgemini.walletapplication.bean.WalletApplicationDetails;
+import com.capgemini.walletapplication.bean.AccountDetails;
 import com.capgemini.walletapplication.service.WalletApplicationService;
 
 import junit.framework.TestCase;
 
 public class WalletApplicationDAOTest extends TestCase {
 
-	WalletApplicationDetails details;
+	AccountDetails details;
 	
 	WalletApplicationService service=new WalletApplicationService();
 	

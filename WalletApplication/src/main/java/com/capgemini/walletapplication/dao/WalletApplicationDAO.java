@@ -6,17 +6,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.capgemini.walletapplication.bean.WalletApplicationDetails;
+import com.capgemini.walletapplication.bean.AccountDetails;
 
 public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 	 long transId;
-	static WalletApplicationDetails temp=new WalletApplicationDetails();
-	static List<WalletApplicationDetails> list=new ArrayList<WalletApplicationDetails>();
+	static AccountDetails temp=new AccountDetails();
+	static List<AccountDetails> list=new ArrayList<AccountDetails>();
 	static Map<Long,String> transactions=new HashMap<Long,String>();
-	static List<Long> trans=new ArrayList<Long>();
 	
 	
-	public int createAccount(WalletApplicationDetails details) {
+	
+	public int createAccount(AccountDetails details) {
 		
 		if(list.add(details)) {
 			temp=details;
@@ -26,12 +26,12 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 			return 0;
 	}
 
-	public boolean login(WalletApplicationDetails details) {
+	public boolean login(AccountDetails details) {
 		
-		Iterator<WalletApplicationDetails> it=list.iterator();
+		Iterator<AccountDetails> it=list.iterator();
 		while(it.hasNext()) {
 			
-			WalletApplicationDetails itDetails=it.next();
+			AccountDetails itDetails=it.next();
 			if(details.getUsername().equals(itDetails.getUsername())) {
 				temp=itDetails;
 				return true;
@@ -42,10 +42,10 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 
 	public double showBalance() {
 		
-		Iterator<WalletApplicationDetails> it=list.iterator();
+		Iterator<AccountDetails> it=list.iterator();
 		while(it.hasNext()) {
 			
-			WalletApplicationDetails itDetails=it.next();
+			AccountDetails itDetails=it.next();
 			if(temp.getUsername().equals(itDetails.getUsername())) {
 				
 				double balance=itDetails.getBalance();
@@ -60,19 +60,18 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 		
 		
 		
-		Iterator<WalletApplicationDetails> it=list.iterator();
+		Iterator<AccountDetails> it=list.iterator();
 		while(it.hasNext()) {
 			
-			WalletApplicationDetails itDetails=it.next();
+			AccountDetails itDetails=it.next();
 			
 			if(temp.getUsername().equals(itDetails.getUsername())) {
 				
 				itDetails.setBalance(itDetails.getBalance()+amount);
 				//set transaction 
-				transId=(long)Math.random()*12345+678;
-				trans.add(transId);
-				itDetails.setTrans(trans);
-				String s="\tDeposited "+Double.toString(amount)+" to "+Long.toString(itDetails.getAccNo());
+				transId=(long)(Math.random()*12345+678);
+				System.out.println("Transaction Id: "+transId);
+				String s="\tDeposited "+Double.toString(amount)+" to "+Long.toString(itDetails.getAccNo())+" Balance: "+itDetails.getBalance();
 				transactions.put(transId, s);
 				return 1;
 			}
@@ -85,18 +84,17 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 		
 		
 		
-		Iterator<WalletApplicationDetails> it=list.iterator();
+		Iterator<AccountDetails> it=list.iterator();
 		while(it.hasNext()) {
 			
-			WalletApplicationDetails itDetails=it.next();
+			AccountDetails itDetails=it.next();
 			if(temp.getUsername().equals(itDetails.getUsername())) {
 				
 				itDetails.setBalance(itDetails.getBalance()-amount);
 				//set transaction
-				transId=(long)Math.random()*10000+999;
-				trans.add(transId);
-				itDetails.setTrans(trans);
-				String s="\tWithdrew "+Double.toString(amount)+" from "+Long.toString(itDetails.getAccNo());
+				transId=(long)(Math.random()*10000+999);
+				System.out.println("Transaction Id: "+transId);
+				String s="\tWithdrew "+Double.toString(amount)+" from "+Long.toString(itDetails.getAccNo())+" Balance: "+itDetails.getBalance();
 				transactions.put(transId, s);
 				return 1;
 			}
@@ -109,18 +107,18 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 		
 		
 		
-		Iterator<WalletApplicationDetails> it=list.iterator();
-		Iterator<WalletApplicationDetails> it1=list.iterator();
+		Iterator<AccountDetails> it=list.iterator();
+		Iterator<AccountDetails> it1=list.iterator();
 		while(it.hasNext()) {
 			
-			WalletApplicationDetails itDetails=it.next();
+			AccountDetails itDetails=it.next();
 			if(temp.getUsername().equals(itDetails.getUsername())) {
 				// debit from user account
 				itDetails.setBalance(itDetails.getBalance()-amount);
 				//credit to recipient if xyz bank account holder
 				while(it1.hasNext()) {
 					
-					WalletApplicationDetails itDetails1=it1.next();
+					AccountDetails itDetails1=it1.next();
 					if(itDetails1.getAccNo()==toAccNo) {
 						
 						itDetails1.setBalance(itDetails1.getBalance()+amount);	
@@ -128,10 +126,9 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 					}
 					
 				}
-				transId=(long)Math.random()*12345 + 234;
-				trans.add(transId);
-				itDetails.setTrans(trans);
-				String s="\tTransfered "+Double.toString(amount)+" to "+Long.toString(toAccNo)+" from "+Long.toString(itDetails.getAccNo());
+				transId=(long)(Math.random()*12345+234);
+				System.out.println("Transaction Id: "+transId);
+				String s="\tTransfered "+Double.toString(amount)+" to "+Long.toString(toAccNo)+" from "+Long.toString(itDetails.getAccNo())+" Balance :"+itDetails.getBalance();
 				transactions.put(transId, s);
 				return 1;		
 			}	

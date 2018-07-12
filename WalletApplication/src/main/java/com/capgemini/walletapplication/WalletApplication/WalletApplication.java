@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
 
-import com.capgemini.walletapplication.bean.WalletApplicationDetails;
+import com.capgemini.walletapplication.bean.AccountDetails;
+import com.capgemini.walletapplication.bean.Customer;
 import com.capgemini.walletapplication.exception.MinTransferAmountException;
 import com.capgemini.walletapplication.service.WalletApplicationService;
 import com.capgemini.walletapplication.service.WalletApplicationValidate;
@@ -60,7 +61,8 @@ public class WalletApplication {
 
 	public static void createAccount() {
 
-		WalletApplicationDetails details = new WalletApplicationDetails();
+		Customer customer=new Customer();
+		AccountDetails details = new AccountDetails();
 		WalletApplicationService service = new WalletApplicationService();
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -107,18 +109,19 @@ public class WalletApplication {
 			if (Vfname && Vlname && Vgender && Vemail && Vmobile && Vage && Vuser && Vpass) {
 
 				// Setting the values to bean class object
-				long accNo = (long) Math.random() * 123456789 + 1000;
+				long accNo = (long) (Math.random() * 123456789 + 1000);
 
-				details.setFirstName(firstName);
+				customer.setFirstName(firstName);
+				customer.setLastName(lastName);
+				customer.setEmail(email);
+				customer.setAge(age);
+				customer.setGender(gender);
+				customer.setMobileNo(mobileNo);
+				details.setCustomer(customer);
 				details.setAccNo(accNo);
 				details.setDate(LocalDate.now());
-				details.setLastName(lastName);
-				details.setEmail(email);
-				details.setGender(gender);
-				details.setMobileNo(mobileNo);
 				details.setUsername(username);
 				details.setPassword(password);
-				details.setAge(age);
 				details.setBalance(0);
 
 				if (service.createAccount(details) == 1) {
@@ -141,7 +144,7 @@ public class WalletApplication {
 
 	public static void login() {
 
-		WalletApplicationDetails details = new WalletApplicationDetails();
+		AccountDetails details = new AccountDetails();
 		WalletApplicationService service = new WalletApplicationService();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		try {
@@ -176,7 +179,7 @@ public class WalletApplication {
 
 	}
 
-	public static void extendedMenu(WalletApplicationDetails details) {
+	public static void extendedMenu(AccountDetails details) {
 
 		WalletApplicationService service = new WalletApplicationService();
 
@@ -241,7 +244,7 @@ public class WalletApplication {
 					break;
 
 				case 6:
-					System.exit(0);
+					mainMenu();
 					break;
 
 				default:

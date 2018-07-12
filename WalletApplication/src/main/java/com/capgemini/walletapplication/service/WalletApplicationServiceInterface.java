@@ -2,14 +2,14 @@ package com.capgemini.walletapplication.service;
 
 import java.util.Map;
 
-import com.capgemini.walletapplication.bean.WalletApplicationDetails;
+import com.capgemini.walletapplication.bean.AccountDetails;
 
 public interface WalletApplicationServiceInterface {
 
 	
-	public int createAccount(WalletApplicationDetails details);
+	public int createAccount(AccountDetails details);
 	
-	public boolean login(WalletApplicationDetails details);
+	public boolean login(AccountDetails details);
 	
 	public double showBalance();
 	

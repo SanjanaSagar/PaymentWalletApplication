@@ -2,14 +2,14 @@ package com.capgemini.walletapplication.service;
 
 import java.util.Map;
 
-import com.capgemini.walletapplication.bean.WalletApplicationDetails;
+import com.capgemini.walletapplication.bean.AccountDetails;
 import com.capgemini.walletapplication.dao.WalletApplicationDAO;
 
 public class WalletApplicationService implements WalletApplicationServiceInterface {
 
 	WalletApplicationDAO dao=new WalletApplicationDAO();
 	
-	public int createAccount(WalletApplicationDetails details) {
+	public int createAccount(AccountDetails details) {
 		// TODO Auto-generated method stub
 		return dao.createAccount(details) ;
 		
@@ -30,7 +30,7 @@ public class WalletApplicationService implements WalletApplicationServiceInterfa
 		return dao.fundTransfer(toAccNo, amount);
 	}
 
-	public boolean login(WalletApplicationDetails details) {
+	public boolean login(AccountDetails details) {
 		// TODO Auto-generated method stub
 		return dao.login(details);
 		
