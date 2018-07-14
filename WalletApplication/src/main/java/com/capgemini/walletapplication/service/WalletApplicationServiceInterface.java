@@ -1,5 +1,6 @@
 package com.capgemini.walletapplication.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.capgemini.walletapplication.bean.AccountDetails;
@@ -19,7 +20,7 @@ public interface WalletApplicationServiceInterface {
 	
 	public int fundTransfer(long toAccNo,double amount);
 	
-	public Map printTransaction();
+	public List<String> printTransaction();
 	
 	
 }

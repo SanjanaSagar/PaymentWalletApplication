@@ -14,7 +14,7 @@ public class AccountDetails {
 	private String username;
 	private String password;
 	private double balance;
-	private long transId;
+	private List<String> transId;
 	private String branch;
 	private String accType;
 	
@@ -56,19 +56,30 @@ public class AccountDetails {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-	public long getTransId() {
-		return transId;
-	}
-
-	public void setTransId(long transId) {
-		this.transId = transId;
-		
-	}
+	
 	public Customer getCustomer() {
 		return customer;
 	}
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+	public List<String> getTransId() {
+		return transId;
+	}
+	public void setTransId(List<String> transId) {
+		this.transId = transId;
+	}
+	public String getBranch() {
+		return branch;
+	}
+	public void setBranch(String branch) {
+		this.branch = branch;
+	}
+	public String getAccType() {
+		return accType;
+	}
+	public void setAccType(String accType) {
+		this.accType = accType;
 	}
 	
 	

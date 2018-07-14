@@ -1,9 +1,13 @@
+
 package com.capgemini.walletapplication.WalletApplication;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 import com.capgemini.walletapplication.bean.AccountDetails;
 import com.capgemini.walletapplication.bean.Customer;
@@ -13,18 +17,24 @@ import com.capgemini.walletapplication.service.WalletApplicationValidate;
 
 public class WalletApplication {
 
+	
+	
 	public static void main(String[] args) {
 
 		System.out.println("\t*****Welcome to XYZ E-Wallet******");
+	Scanner s = new Scanner(System.in);
+	
+	
 		
 		mainMenu();
-		
+		=
 
 	}
 
 	public static void mainMenu() {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
 
 		int choice = 0;
 
@@ -61,6 +71,8 @@ public class WalletApplication {
 
 	public static void createAccount() {
 
+		
+		List<String> transId=new ArrayList<String>();
 		Customer customer=new Customer();
 		AccountDetails details = new AccountDetails();
 		WalletApplicationService service = new WalletApplicationService();
@@ -73,27 +85,40 @@ public class WalletApplication {
 			System.out.println("Enter first name:");
 			String firstName = br.readLine();
 
-			System.out.println("\nEnter last name:");
+			System.out.println("Enter last name:");
 			String lastName = br.readLine();
 
-			System.out.println("\nEnter gender:");
+			System.out.println("Enter gender:");
 			String gender = br.readLine();
 
-			System.out.println("\nEnter mobile number:");
+			System.out.println("Enter mobile number:");
 			String mobileNo = br.readLine();
 
-			System.out.println("\nEnter age:");
+			System.out.println("Enter age:");
 			int age = Integer.parseInt(br.readLine());
 
-			System.out.println("\nEnter email:");
+			System.out.println("Enter email:");
 			String email = br.readLine();
+			
+			System.out.println("Enter Branch:");
+			String branch=br.readLine();
+			
+			System.out.println("Enter Account type:");
+			String accType=br.readLine();
+			
+			System.out.println("Enter Aadhar no:");
+			long aadhar=Long.parseLong(br.readLine());
+			
+			System.out.println("Enter Location:");
+			String location=br.readLine();
 
-			System.out.println("\nEnter username:");
+			System.out.println("Enter username:");
 			String username = br.readLine();
 
-			System.out.println("\nCreate Password(min 8 characters):");
+			System.out.println("Create Password(min 8 characters):");
 			String password = br.readLine();
 
+			
 			// Validation of input
 			WalletApplicationValidate validate = new WalletApplicationValidate();
 
@@ -105,10 +130,16 @@ public class WalletApplication {
 			boolean Vage = validate.validAge(age);
 			boolean Vuser = validate.validUsername(username);
 			boolean Vpass = validate.validPassword(password);
+			boolean Vbran= validate.validBranch(branch);
+			boolean Vaad= validate.validAadhar(aadhar);
+			boolean Vloc= validate.validloc(location);
+			boolean Vtype= validate.validType(accType);
+			
 
-			if (Vfname && Vlname && Vgender && Vemail && Vmobile && Vage && Vuser && Vpass) {
+			if (Vfname && Vlname && Vgender && Vemail && Vmobile && Vage && Vuser && Vpass && Vbran && Vaad && Vloc && Vtype) {
 
 				// Setting the values to bean class object
+				
 				long accNo = (long) (Math.random() * 123456789 + 1000);
 
 				customer.setFirstName(firstName);
@@ -117,12 +148,18 @@ public class WalletApplication {
 				customer.setAge(age);
 				customer.setGender(gender);
 				customer.setMobileNo(mobileNo);
+				customer.setAadhar(aadhar);
+				customer.setLocation(location);
 				details.setCustomer(customer);
+				
+				details.setTransId(transId);
 				details.setAccNo(accNo);
 				details.setDate(LocalDate.now());
 				details.setUsername(username);
 				details.setPassword(password);
-				details.setBalance(0);
+				details.setAccType(accType);
+				details.setBranch(branch);
+				details.setBalance(1000);
 
 				if (service.createAccount(details) == 1) {
 					System.out.println("Account successfully created!\n\tAccount number:"+details.getAccNo());

@@ -45,12 +45,7 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getAadhar() {
-		return aadhar;
-	}
-	public void setAadhar(String aadhar) {
-		this.aadhar = aadhar;
-	}
+	
 	public String getLocation() {
 		return location;
 	}
@@ -59,9 +54,15 @@ public class Customer {
 	}
 	private String gender;
 	private int age;
+	public long getAadhar() {
+		return aadhar;
+	}
+	public void setAadhar(long aadhar) {
+		this.aadhar = aadhar;
+	}
 	private String mobileNo;
 	private String email;
-	private String aadhar;
+	private long aadhar;
 	private String location;
 	
 	

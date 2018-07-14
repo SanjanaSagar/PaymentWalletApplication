@@ -6,83 +6,90 @@ import junit.framework.TestCase;
 
 public class AccountDetailsTest extends TestCase {
 
-	AccountDetails details =new AccountDetails();
+	AccountDetails details=new AccountDetails();
 	
-	
-	public void testGetFirstName() {
-		
-		details.setFirstName("Sanjana");
-		assertEquals("Sanjana",details.getFirstName());
-		assertTrue("Sanjana".equalsIgnoreCase(details.getFirstName()));
-		assertNotNull(details);
-		
-	}
-
-	public void testGetLastName() {
-		
-		details.setLastName("Sagar");
-		assertEquals("Sagar",details.getLastName());
-		assertTrue("Sagar".equalsIgnoreCase(details.getLastName()));
-		assertNotNull(details);
-	}
-
-	public void testGetGender() {
-		
-		details.setGender("Male");
-		assertFalse("female".equalsIgnoreCase(details.getGender()));
-		
-	}
-
 	public void testGetAccNo() {
 		
-		details.setAccNo(100000);
-		assertFalse(576483==details.getAccNo());
-		assertTrue(100000==details.getAccNo());
-
-		
-	}
-
-	public void testGetMobileNo() {
-		
-		details.setMobileNo("9052023205");
-		assertFalse("9052168938".equalsIgnoreCase(details.getMobileNo()));
-		assertTrue("9052023205".equalsIgnoreCase(details.getMobileNo()));
-		
+		details.setAccNo(1234567890);
+		assertEquals(1234567890, details.getAccNo());
+		assertFalse(details.getAccNo()==1987654321);
+		assertTrue(details.getAccNo()==1234567890);
+	
 	}
 
 	public void testGetDate() {
-		
-		assertNull(details.getDate());
-		assertFalse(details.getDate()==LocalDate.now());
-		details.setDate(LocalDate.now());
-		assertEquals(LocalDate.now(),details.getDate() );
-	}
 
-	public void testGetEmail() {
+		assertNotNull(details);
+		details.setDate(LocalDate.now());
 		
-		details.setEmail("sanjana@gmail.com");
-		assertEquals("sanjana@gmail.com", details.getEmail());
+		assertEquals(LocalDate.now(),details.getDate());
 		
 	}
 
 	public void testGetUsername() {
 		
-		details.setUsername("SanjanaSagar");
-		assertEquals("SanjanaSagar", details.getUsername());
+		assertNotNull(details);
+		details.setUsername("Bhaskar");
+		
+		assertEquals("Bhaskar", details.getUsername());
+		assertTrue(details.getUsername().equals("Bhaskar"));
+		assertFalse(details.getUsername().equals("Baachi"));
 		
 	}
 
 	public void testGetPassword() {
 		
-		details.setPassword("qwerty99");
-		assertEquals("qwerty99", details.getPassword());
+		assertNotNull(details);
+		details.setPassword("Roy");
+		
+		assertEquals("Roy", details.getPassword());
+		assertTrue(details.getPassword().equals("Roy"));
+		assertFalse(details.getPassword().equals("Rai"));
+		
 	}
 
-	public void testGetAmount() {
+	public void testGetBalance() {
+
+		assertNotNull(details);
+		details.setBalance(50000);
 		
-		details.setBalance(9000);
-		assertFalse(8000==details.getBalance());
-		assertTrue(9000==details.getBalance());
+		assertEquals(50000,details.getBalance());
+		assertTrue(details.getBalance()==50000);
+		assertFalse(details.getBalance()==40000);
+		//assertNotNull(details.getBalance());
+
+		
+	}
+
+	public void testGetCustomer() {
+		
+		assertNull(details.getCustomer());
+		
+	}
+
+	public void testGetTransId() {
+		
+		assertNull(details.getTransId());
+		
+	}
+
+	public void testGetBranch() {
+		
+		details.setBranch("hyderabad");
+		
+		assertEquals("hyderabad",details.getBranch());
+		assertTrue(details.getBranch().equals("hyderabad"));
+		assertFalse(details.getBranch().equals("secunderabad"));
+	}
+
+	public void testGetAccType() {
+		
+		details.setAccType("savings");
+		
+		assertEquals("savings", details.getAccType());
+		assertTrue(details.getAccType().equals("savings"));
+		assertTrue(details.getAccType().equals("current"));
+		
 	}
 
 }

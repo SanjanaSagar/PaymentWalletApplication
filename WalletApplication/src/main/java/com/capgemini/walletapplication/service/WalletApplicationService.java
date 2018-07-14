@@ -1,5 +1,6 @@
 package com.capgemini.walletapplication.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.capgemini.walletapplication.bean.AccountDetails;
@@ -41,7 +42,7 @@ public class WalletApplicationService implements WalletApplicationServiceInterfa
 		return dao.showBalance();
 	}
 
-	public Map printTransaction() {
+	public List<String> printTransaction() {
 		// TODO Auto-generated method stub
 		return dao.printTransaction();
 	}

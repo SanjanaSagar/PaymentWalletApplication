@@ -12,7 +12,7 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 	 long transId;
 	static AccountDetails temp=new AccountDetails();
 	static List<AccountDetails> list=new ArrayList<AccountDetails>();
-	static Map<Long,String> transactions=new HashMap<Long,String>();
+	//static Map<Long,String> transactions=new HashMap<Long,String>();
 	
 	
 	
@@ -32,7 +32,7 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 		while(it.hasNext()) {
 			
 			AccountDetails itDetails=it.next();
-			if(details.getUsername().equals(itDetails.getUsername())) {
+			if(details.getUsername().equals(itDetails.getUsername()) && details.getPassword().equals(itDetails.getPassword())) {
 				temp=itDetails;
 				return true;
 			}
@@ -70,9 +70,10 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 				itDetails.setBalance(itDetails.getBalance()+amount);
 				//set transaction 
 				transId=(long)(Math.random()*12345+678);
-				System.out.println("Transaction Id: "+transId);
-				String s="\tDeposited "+Double.toString(amount)+" to "+Long.toString(itDetails.getAccNo())+" Balance: "+itDetails.getBalance();
-				transactions.put(transId, s);
+				String s=Long.toString(transId)+":\tDeposited "+Double.toString(amount)+" to "+Long.toString(itDetails.getAccNo())+" Balance: "+itDetails.getBalance();
+				itDetails.getTransId().add(s);
+				
+				//transactions.put(transId, s);
 				return 1;
 			}
 			
@@ -93,9 +94,9 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 				itDetails.setBalance(itDetails.getBalance()-amount);
 				//set transaction
 				transId=(long)(Math.random()*10000+999);
-				System.out.println("Transaction Id: "+transId);
-				String s="\tWithdrew "+Double.toString(amount)+" from "+Long.toString(itDetails.getAccNo())+" Balance: "+itDetails.getBalance();
-				transactions.put(transId, s);
+				String s=Long.toString(transId)+":\tWithdrew "+Double.toString(amount)+" from "+Long.toString(itDetails.getAccNo())+" Balance: "+itDetails.getBalance();
+				itDetails.getTransId().add(s);
+				//transactions.put(transId, s);
 				return 1;
 			}
 			
@@ -114,31 +115,45 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 			AccountDetails itDetails=it.next();
 			if(temp.getUsername().equals(itDetails.getUsername())) {
 				// debit from user account
+				transId=(long)(Math.random()*12345+234);
 				itDetails.setBalance(itDetails.getBalance()-amount);
 				//credit to recipient if xyz bank account holder
+				
 				while(it1.hasNext()) {
 					
 					AccountDetails itDetails1=it1.next();
 					if(itDetails1.getAccNo()==toAccNo) {
 						
 						itDetails1.setBalance(itDetails1.getBalance()+amount);	
-						
+						String s1=Long.toString(transId)+"Recieved :"+Double.toString(amount)+" from "+Long.toString(itDetails.getAccNo())+"\t Balance :"+itDetails1.getBalance();
+						itDetails1.getTransId().add(s1);
 					}
 					
 				}
-				transId=(long)(Math.random()*12345+234);
-				System.out.println("Transaction Id: "+transId);
-				String s="\tTransfered "+Double.toString(amount)+" to "+Long.toString(toAccNo)+" from "+Long.toString(itDetails.getAccNo())+" Balance :"+itDetails.getBalance();
-				transactions.put(transId, s);
+				
+				String s=Long.toString(transId)+":\tTransfered "+Double.toString(amount)+" to "+Long.toString(toAccNo)+" from "+Long.toString(itDetails.getAccNo())+" Balance :"+itDetails.getBalance();
+				itDetails.getTransId().add(s);
+				//transactions.put(transId, s);
 				return 1;		
 			}	
 		}
 		return 0;
 	}
 
-	public Map printTransaction() {
+	public List<String> printTransaction() {
 		
-		return transactions;
+		Iterator<AccountDetails> it=list.iterator();
+		while(it.hasNext()) {
+			
+			AccountDetails itDetails=it.next();
+			if(temp.getUsername().equals(itDetails.getUsername())) {
+				
+				return itDetails.getTransId();
+				
+			}
+			
+		}
+		return null;
 	}
 
 }

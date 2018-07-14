@@ -66,7 +66,37 @@ public class WalletApplicationValidate {
 		else
 			return false;
 	}
-	
+	public boolean validAadhar(long aadhar) {
+		
+		/*if(!(Long.toString(aadhar).length()==12)) {
+			return false;
+		}*/
+		return true;
+		
+	}
+	public boolean validloc(String location) {
+		
+		if(!location.isEmpty())
+			return true;
+		else
+		return false;
+		
+	}
+	public boolean validBranch(String branch) {
+		
+		if(!branch.isEmpty())
+			return true;
+		else
+		return false;
+		
+	}
+	public boolean validType(String accType) {
+		
+		if(accType.equalsIgnoreCase("savings") || accType.equalsIgnoreCase("current"))
+			return true;
+		else
+		return false;
+	}
 	
 	
 }
