@@ -23,10 +23,7 @@ public class WalletApplication {
 	public static void main(String[] args) {
 
 		System.out.println("\t*****Welcome to XYZ E-Wallet******");
-	Scanner s = new Scanner(System.in);
 	
-	
-		
 		mainMenu();
 	
 

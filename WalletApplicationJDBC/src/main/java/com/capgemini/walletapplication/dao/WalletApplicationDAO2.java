@@ -64,7 +64,9 @@ public class WalletApplicationDAO2 implements WalletApplicationDAOInterface{
 	}finally {
 		
 		try {
+			
 			connect.close();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -131,7 +133,7 @@ public class WalletApplicationDAO2 implements WalletApplicationDAOInterface{
 		try {
 			
 				String depositQ="update accountdetails set balance="+(balance+amount)+" where aadhar="+aadhar;
-		
+				balance+=amount;
 				java.sql.PreparedStatement deposit=connect.prepareStatement(depositQ);
 				
 				if(deposit.executeUpdate()==1) {
@@ -161,6 +163,7 @@ public class WalletApplicationDAO2 implements WalletApplicationDAOInterface{
 			
 				
 				String withdrawQ="update accountdetails set balance="+(balance-amount)+" where aadhar="+aadhar;
+				balance-=amount;
 				java.sql.PreparedStatement deposit=connect.prepareStatement(withdrawQ);
 				
 				if(deposit.executeUpdate()==1) {
@@ -201,6 +204,7 @@ public class WalletApplicationDAO2 implements WalletApplicationDAOInterface{
 			if(tempTrans.first()) {
 				
 				String withdrawQ="update accountdetails set balance="+(balance-amount)+" where aadhar="+aadhar;
+				balance-=amount;
 				java.sql.PreparedStatement deposit=connect.prepareStatement(withdrawQ);
 				
 				if(deposit.executeUpdate()==1) {
