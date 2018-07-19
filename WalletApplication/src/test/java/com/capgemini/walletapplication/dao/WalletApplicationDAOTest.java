@@ -1,5 +1,8 @@
 package com.capgemini.walletapplication.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.capgemini.walletapplication.bean.AccountDetails;
 import com.capgemini.walletapplication.service.WalletApplicationService;
 
@@ -7,24 +10,28 @@ import junit.framework.TestCase;
 
 public class WalletApplicationDAOTest extends TestCase {
 
-	AccountDetails details;
-	
-	WalletApplicationService service=new WalletApplicationService();
+	  AccountDetails details=new AccountDetails();
+	  
+	 WalletApplicationService service=new WalletApplicationService();
 	
 	public void testCreateAccount() {
-		assertEquals(0,service.createAccount(details) );
-		assertNull(details);
-		assertTrue(true);
+		assertEquals(1,service.createAccount(details) );
+		assertNotNull(details);
+		
 	}
 
 	public void testLogin() {
 		
-		assertEquals(false,service.login(details));
+		assertEquals(1, service.login(details));
+		
 	}
 
 	public void testShowBalance() {
 		
+		
 		assertEquals(40000,40000);
+		details.setBalance(1000);
+		assertEquals(1000.0, service.showBalance());
 		
 	}
 

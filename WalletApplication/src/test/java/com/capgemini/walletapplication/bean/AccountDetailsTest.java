@@ -50,11 +50,11 @@ public class AccountDetailsTest extends TestCase {
 
 	public void testGetBalance() {
 
-		assertNotNull(details);
+		
 		details.setBalance(50000);
 		
-		assertEquals(50000,details.getBalance());
-		assertTrue(details.getBalance()==50000);
+		assertEquals(50000.0,details.getBalance());
+		assertTrue(50000==details.getBalance());
 		assertFalse(details.getBalance()==40000);
 		//assertNotNull(details.getBalance());
 
@@ -88,7 +88,7 @@ public class AccountDetailsTest extends TestCase {
 		
 		assertEquals("savings", details.getAccType());
 		assertTrue(details.getAccType().equals("savings"));
-		assertTrue(details.getAccType().equals("current"));
+		assertFalse(details.getAccType().equals("current"));
 		
 	}
 

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,7 +28,7 @@ public class WalletApplication {
 	
 		
 		mainMenu();
-		=
+	
 
 	}
 
@@ -277,7 +278,12 @@ public class WalletApplication {
 						System.err.println("Transfer failed");
 					break;
 				case 5:
-					System.out.println(service.printTransaction());
+					Iterator<String> it=service.printTransaction().iterator();
+					while(it.hasNext()) {
+						
+						System.out.println(it.next());
+					}
+					
 					break;
 
 				case 6:
@@ -299,4 +305,6 @@ public class WalletApplication {
 		}
 
 	}
+
+	
 }

@@ -104,6 +104,8 @@ public class WalletApplicationDAO implements WalletApplicationDAOInterface{
 		return 0;
 	}
 
+	
+
 	public int fundTransfer(long toAccNo, double amount) {
 		
 		

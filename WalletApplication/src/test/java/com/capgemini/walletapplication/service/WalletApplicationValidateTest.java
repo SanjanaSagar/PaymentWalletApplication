@@ -48,8 +48,8 @@ public class WalletApplicationValidateTest extends TestCase {
 		
 		details.setUsername("Rishitha");
 		
-		assertEquals(true, details.getUsername());
-		//assertNotEquals(false, details.getUsername());
+		assertEquals(true, validate.validUsername(details.getUsername()));
+		assertNotEquals(false, validate.validUsername(details.getUsername()));
 		
 	}
 
@@ -57,8 +57,8 @@ public class WalletApplicationValidateTest extends TestCase {
 		
 		details.setPassword("Onyxx12345");
 		
-		assertEquals(true, details.getPassword());
-		//assertNotEquals(false, details.getPassword());
+		assertEquals(true, validate.validPassword(details.getPassword()));
+		assertNotEquals(false, validate.validUsername(details.getPassword()));
 		
 	}
 
@@ -67,35 +67,65 @@ public class WalletApplicationValidateTest extends TestCase {
 		details.setCustomer(customer);
 		details.getCustomer().setAge(22);
 		
-		assertEquals(true, details.getCustomer().getAge());
-		//assertNotEquals(false, details.getCustomer().getAge());
+		assertEquals(true, validate.validAge(details.getCustomer().getAge()));
+		assertNotEquals(false,validate.validAge(details.getCustomer().getAge()) );
 		
 	}
 
 	public void testValidMobileNo() {
 		
 		details.setCustomer(customer);
+		details.getCustomer().setMobileNo("9052023205");
+		
+		assertEquals(true, validate.validMobileNo(details.getCustomer().getMobileNo()));
+		assertNotEquals(false, validate.validMobileNo(details.getCustomer().getMobileNo()));
 		
 	}
 
 	public void testValidEmail() {
-		fail("Not yet implemented");
+		
+		details.setCustomer(customer);
+		details.getCustomer().setEmail("sanjana@gmail.com");
+		
+		assertEquals(true, validate.validEmail(details.getCustomer().getEmail()));
+		assertNotEquals(false,validate.validEmail(details.getCustomer().getEmail()) );
 	}
 
 	public void testValidAadhar() {
-		fail("Not yet implemented");
+		
+		details.setCustomer(customer);
+		details.getCustomer().setAadhar(Long.parseLong("123456789012"));
+		
+		assertEquals(true, validate.validAadhar(details.getCustomer().getAadhar()));
+		assertNotEquals(false, validate.validAadhar(details.getCustomer().getAadhar()));
+		
+		
 	}
 
 	public void testValidloc() {
-		fail("Not yet implemented");
+		
+		details.setCustomer(customer);
+		details.getCustomer().setLocation("Telangana");
+		
+		assertEquals(true, validate.validloc(details.getCustomer().getLocation()));
+		assertNotEquals(false, validate.validloc(details.getCustomer().getLocation()));
 	}
 
 	public void testValidBranch() {
-		fail("Not yet implemented");
+	
+		details.setBranch("Gachibowli");
+		
+		assertEquals(true, validate.validBranch(details.getBranch()));
+		assertNotEquals(false, validate.validBranch(details.getBranch()));
 	}
 
 	public void testValidType() {
-		fail("Not yet implemented");
+		
+		details.setAccType("savings");
+		
+		assertEquals(true, validate.validType(details.getAccType()));
+		assertNotEquals(false, validate.validType(details.getAccType()));
+		
 	}
 
 }

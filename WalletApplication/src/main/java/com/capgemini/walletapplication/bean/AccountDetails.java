@@ -30,6 +30,7 @@ public class AccountDetails {
 	public LocalDate getDate() {
 		return date;
 	}
+	
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
@@ -82,5 +83,7 @@ public class AccountDetails {
 		this.accType = accType;
 	}
 	
+	
+
 	
 }
