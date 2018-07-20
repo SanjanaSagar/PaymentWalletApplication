@@ -83,7 +83,6 @@ public class WalletApplicationDAO2 implements WalletApplicationDAOInterface{
 
 	public boolean login(AccountDetails details) {
 		
-		int x=0;
 		try {
 			
 			connect=DBUtil.getConnection();
@@ -93,11 +92,12 @@ public class WalletApplicationDAO2 implements WalletApplicationDAOInterface{
 			ResultSet resultLogin=stmtL.executeQuery();
 			
 			if(resultLogin.next()) {
-				x=1;
+			
 			aadhar=resultLogin.getLong(1);
 			balance=resultLogin.getLong(5);
 			accNo=resultLogin.getLong(2);
 			
+			return true;
 			}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -106,16 +106,7 @@ public class WalletApplicationDAO2 implements WalletApplicationDAOInterface{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		try {
-			System.out.println(connect.isClosed());
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if(x==1)
-			return true;
-		else
+		
 			return false;
 		
 	}
