@@ -92,7 +92,7 @@ public class WalletApplicationDAO2 implements WalletApplicationDAOInterface{
 			java.sql.PreparedStatement stmtL=connect.prepareStatement(loginQ);
 			ResultSet resultLogin=stmtL.executeQuery();
 			
-			if(resultLogin.first()) {
+			if(resultLogin.next()) {
 				x=1;
 			aadhar=resultLogin.getLong(1);
 			balance=resultLogin.getLong(5);
@@ -201,7 +201,7 @@ public class WalletApplicationDAO2 implements WalletApplicationDAOInterface{
 			java.sql.PreparedStatement toAcc=connect.prepareStatement(toAccQ);
 			ResultSet tempTrans=toAcc.executeQuery();
 			
-			if(tempTrans.first()) {
+			if(tempTrans.next()) {
 				
 				String withdrawQ="update accountdetails set balance="+(balance-amount)+" where aadhar="+aadhar;
 				balance-=amount;
